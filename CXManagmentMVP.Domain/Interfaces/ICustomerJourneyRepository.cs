@@ -4,10 +4,11 @@ namespace CXManagmentMVP.Domain.Interfaces
 {
     public interface ICustomerJourneyRepository
     {
-        Task<IEnumerable<CustomerJourney>> GetByCustomerIdAsync(Guid customerId);
-        Task AddAsync(CustomerJourney journey);
-        void Update(CustomerJourney journey);
-        void Remove(CustomerJourney journey);
+        Task<CustomerJourney> GetByIdAsync(int id);
+        Task<IEnumerable<CustomerJourney>> GetByCustomerIdAsync(int customerId);
+        Task<int> AddAsync(CustomerJourney journey);
+        Task<bool> UpdateAsync(CustomerJourney journey);
+        Task<bool> DeleteAsync(int id);
     }
 
 }

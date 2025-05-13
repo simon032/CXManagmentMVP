@@ -4,8 +4,9 @@ namespace CXManagmentMVP.Domain.Interfaces
 {
     public interface ICustomerScoreRepository
     {
-        Task<CustomerScore?> GetByCustomerIdAsync(Guid customerId);
+        Task<CustomerScore?> GetByCustomerIdAsync(int customerId);
         Task AddAsync(CustomerScore score);
-        void Update(CustomerScore score);
+        Task<bool> UpdateScoreAsync(CustomerScore score);
+        Task<bool> DeleteScoreAsync(CustomerScore score);
     }
 }

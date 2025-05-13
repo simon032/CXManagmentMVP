@@ -4,11 +4,12 @@ namespace CXManagmentMVP.Domain.Interfaces
 {
     public interface ICustomerRepository
     {
-        Task<Customer?> GetByIdAsync(Guid id);
+        Task<Customer?> GetByIdAsync(int id);
         Task<IEnumerable<Customer>> GetAllAsync();
         Task<Customer?> GetByEmailAsync(string email);
         Task AddAsync(Customer customer);
-        void Update(Customer customer);
-        void Remove(Customer customer);
+        Task<bool> UpdateAsync(Customer customer);
+        Task<bool> DeleteAsync(int id);
+
     }
 }

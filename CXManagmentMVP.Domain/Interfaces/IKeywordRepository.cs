@@ -4,7 +4,7 @@ namespace CXManagmentMVP.Domain.Interfaces
 {
     public interface IKeywordRepository
     {
-        Task<Keyword?> GetByIdAsync(Guid id);
+        Task<Keyword?> GetByIdAsync(int id);
         Task<IEnumerable<Keyword>> GetAllAsync();
         Task AddAsync(Keyword keyword);
         void Update(Keyword keyword);
