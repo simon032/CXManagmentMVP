@@ -1,6 +1,6 @@
 ﻿namespace CXManagmentMVP.Domain.Entities
 {
-    public class KeywordsApplicationSystem
+    public class KeywordApplicationSystem
     {
         public int CXKASID { get; set; }
         public int? CXASID { get; set; }
