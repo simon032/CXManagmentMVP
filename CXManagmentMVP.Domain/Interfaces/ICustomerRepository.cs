@@ -7,7 +7,7 @@ namespace CXManagmentMVP.Domain.Interfaces
         Task<Customer?> GetByIdAsync(int id);
         Task<IEnumerable<Customer>> GetAllAsync();
         Task<Customer?> GetByEmailAsync(string email);
-        Task AddAsync(Customer customer);
+        Task<int> AddAsync(Customer customer);
         Task<bool> UpdateAsync(Customer customer);
         Task<bool> DeleteAsync(int id);
 

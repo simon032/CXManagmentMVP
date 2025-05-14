@@ -1,6 +1,6 @@
 ﻿namespace CXManagement.Application.DTOs.CustomerScore
 {
-    public class CalculateCustomerScoreDto
+    public class CreateCustomerScoreDto
     {
         public int CXCustomerID { get; set; }
         public int CXKeywordID { get; set; }

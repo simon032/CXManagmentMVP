@@ -14,8 +14,4 @@
     <ProjectReference Include="..\CXManagmentMVP.Domain\CXManagmentMVP.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\CustomerScore\" />
-  </ItemGroup>
-
 </Project>

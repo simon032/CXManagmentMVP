@@ -6,9 +6,9 @@ namespace CXManagmentMVP.Domain.Interfaces
     {
         Task<ApplicationSystem?> GetByIdAsync(int id);
         Task<IEnumerable<ApplicationSystem>> GetAllAsync();
-        Task AddAsync(ApplicationSystem appSystem);
-        Task UpdateAsync(ApplicationSystem appSystem);
-        Task DeleteAsync(int id);
+        Task<int> AddAsync(ApplicationSystem appSystem);
+        Task<bool> UpdateAsync(ApplicationSystem appSystem);
+        Task<bool> DeleteAsync(int id);
 
     }
 }

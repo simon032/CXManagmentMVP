@@ -6,8 +6,8 @@ namespace CXManagement.Application.Interfaces
     {
         Task<CustomerScoreDto> GetByIdAsync(int id);
         Task<List<CustomerScoreDto>> GetByCustomerIdAsync(int customerId);
-        Task<CustomerScoreDto> CalculateScoreAsync(CalculateCustomerScoreDto calculateDto);
-        Task<bool> UpdateScoreAsync(int id, UpdateCustomerScoreDto updateDto);
-        Task<bool> DeleteScoreAsync(int id);
+        Task<int> AddAsync(CreateCustomerScoreDto createDto);
+        Task<bool> UpdateAsync(int id, UpdateCustomerScoreDto updateDto);
+        Task<bool> DeleteAsync(int id);
     }
 }
