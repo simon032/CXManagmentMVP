@@ -1,33 +1,31 @@
-﻿using CXManagmentMVP.Domain.Interfaces;
+﻿using CXManagement.Application.Interfaces;
+using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.Customer
 {
     public class DeleteCustomerCommand : IRequest<bool>
     {
-        public int Id { get; set; }
-
-        public DeleteCustomerCommand(int id)
-        {
-            Id = id;
-        }
+        public int CXCustomerID { get; set; }
     }
+
     public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand, bool>
     {
-        private readonly ICustomerRepository _repository;
+        private readonly IRepository<CX_Customer> _repository;
 
-        public DeleteCustomerCommandHandler(ICustomerRepository repository)
+        public DeleteCustomerCommandHandler(IRepository<CX_Customer> repository)
         {
             _repository = repository;
         }
 
         public async Task<bool> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
-            var applicationSystem = await _repository.GetByIdAsync(request.Id);
-            if (applicationSystem == null)
-                return false;
+            var entity = await _repository.GetByIdAsync(request.CXCustomerID);
+            if (entity == null) return false;
 
-            await _repository.DeleteAsync(request.Id);
+            _repository.Delete(entity);
+            await _repository.SaveChangesAsync();
+
             return true;
         }
     }

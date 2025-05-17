@@ -1,0 +1,36 @@
+﻿using CXManagement.Application.DTOs.CX_Application_Keyword;
+using CXManagement.Application.Interfaces;
+using CXManagmentMVP.Domain.Entities;
+using MediatR;
+
+namespace CXManagement.Application.UseCases.ApplicationKeyword
+{
+    public class GetApplicationKeywordByIdQuery : IRequest<ApplicationKeywordDto>
+    {
+        public int CXAKID { get; set; }
+    }
+
+    public class GetApplicationKeywordByIdQueryHandler : IRequestHandler<GetApplicationKeywordByIdQuery, ApplicationKeywordDto>
+    {
+        private readonly IRepository<CX_Application_Keyword> _repository;
+
+        public GetApplicationKeywordByIdQueryHandler(IRepository<CX_Application_Keyword> repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<ApplicationKeywordDto> Handle(GetApplicationKeywordByIdQuery request, CancellationToken cancellationToken)
+        {
+            var entity = await _repository.GetByIdAsync(request.CXAKID);
+            if (entity == null) return null;
+
+            return new ApplicationKeywordDto
+            {
+                CXAKID = entity.CXAKID,
+                CXASID = entity.CXASID,
+                CXKeywordID = entity.CXKeywordID,
+                CXAKWeight = entity.CXAKWeight
+            };
+        }
+    }
+}

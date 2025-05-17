@@ -5,26 +5,24 @@ using MediatR;
 
 namespace CXManagement.Application.UseCases.Customer
 {
-    public class GetCustomerByIdQuery : IRequest<CustomerDto>
+    public class GetAllCustomersQuery : IRequest<IEnumerable<CustomerDto>>
     {
-        public int CXCustomerID { get; set; }
     }
 
-    public class GetCustomerByIdQueryHandler : IRequestHandler<GetCustomerByIdQuery, CustomerDto>
+    public class GetAllCustomersQueryHandler : IRequestHandler<GetAllCustomersQuery, IEnumerable<CustomerDto>>
     {
         private readonly IRepository<CX_Customer> _repository;
 
-        public GetCustomerByIdQueryHandler(IRepository<CX_Customer> repository)
+        public GetAllCustomersQueryHandler(IRepository<CX_Customer> repository)
         {
             _repository = repository;
         }
 
-        public async Task<CustomerDto> Handle(GetCustomerByIdQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CustomerDto>> Handle(GetAllCustomersQuery request, CancellationToken cancellationToken)
         {
-            var entity = await _repository.GetByIdAsync(request.CXCustomerID);
-            if (entity == null) return null;
+            var entities = await _repository.GetAllAsync();
 
-            return new CustomerDto
+            return entities.Select(entity => new CustomerDto
             {
                 CXCustomerID = entity.CXCustomerID,
                 CXCustomerFullName = entity.CXCustomerFullName,
@@ -33,7 +31,7 @@ namespace CXManagement.Application.UseCases.Customer
                 CreateAt = entity.CreateAt,
                 ModifyAt = entity.ModifyAt,
                 CreateBy = entity.CreateBy
-            };
+            });
         }
     }
 }

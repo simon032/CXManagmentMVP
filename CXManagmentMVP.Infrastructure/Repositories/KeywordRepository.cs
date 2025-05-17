@@ -1,0 +1,47 @@
+﻿using CXManagement.Application.Interfaces;
+using CXManagmentMVP.Domain.Entities;
+using CXManagmentMVP.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
+namespace CXManagmentMVP.Infrastructure.Repositories
+{
+    public class KeywordRepository : IKeywordRepository
+    {
+        private readonly CXManagementDbContext _context;
+
+        public KeywordRepository(CXManagementDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task AddAsync(CX_Keyword entity)
+        {
+            await _context.Keywords.AddAsync(entity);
+        }
+
+        public void Delete(CX_Keyword entity)
+        {
+            _context.Keywords.Remove(entity);
+        }
+
+        public async Task<IEnumerable<CX_Keyword>> GetAllAsync()
+        {
+            return await _context.Keywords.ToListAsync();
+        }
+
+        public async Task<CX_Keyword> GetByIdAsync(int id)
+        {
+            return await _context.Keywords.FindAsync(id);
+        }
+
+        public void Update(CX_Keyword entity)
+        {
+            _context.Keywords.Update(entity);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
+        }
+    }
+}
