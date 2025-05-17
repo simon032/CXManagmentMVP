@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CXManagmentMVP.Domain", "CX
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CXManagement.Application", "CXManagement.Application\CXManagement.Application.csproj", "{06BB2D26-1D8D-400A-AB58-C6799759DD9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CXManagmentMVP.Infrastructure", "CXManagmentMVP.Infrastructure\CXManagmentMVP.Infrastructure.csproj", "{4141252D-4ABB-48D2-8AC9-5DBE8104FF7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CXManagmentMVP.Infrastructure", "CXManagmentMVP.Infrastructure\CXManagmentMVP.Infrastructure.csproj", "{4141252D-4ABB-48D2-8AC9-5DBE8104FF7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CXManagement.API", "CXManagement.API\CXManagement.API.csproj", "{7E69703F-E74A-4342-831F-0F1DF73F78CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4141252D-4ABB-48D2-8AC9-5DBE8104FF7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4141252D-4ABB-48D2-8AC9-5DBE8104FF7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4141252D-4ABB-48D2-8AC9-5DBE8104FF7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E69703F-E74A-4342-831F-0F1DF73F78CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E69703F-E74A-4342-831F-0F1DF73F78CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E69703F-E74A-4342-831F-0F1DF73F78CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E69703F-E74A-4342-831F-0F1DF73F78CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

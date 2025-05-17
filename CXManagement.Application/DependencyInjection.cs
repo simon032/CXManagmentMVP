@@ -5,7 +5,7 @@ namespace CXManagement.Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
+        public static IServiceCollection AddApplicationDI(this IServiceCollection services)
         {
             services.AddMediatR(cfg =>
             {
