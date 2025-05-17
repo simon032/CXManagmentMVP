@@ -14,10 +14,10 @@ namespace CXManagmentMVP.Infrastructure
         {
             service.AddDbContext<CXManagementDbContext>((provider, options) =>
             {
-                var connectionOptions = provider.GetRequiredService<IOptionsSnapshot<ConnectionStringOptions>>().Value;
-                options.UseSqlServer(connectionOptions.DefaultConnection);
+                options.UseSqlServer(provider.GetRequiredService<IOptionsSnapshot<ConnectionStringOptions>>().Value.DefaultConnection);
             });
 
+            service.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             service.AddScoped<IApplicationRepository, ApplicationRepository>();
             service.AddScoped<IApplicationKeywordRepository, ApplicationKeywordRepository>();
@@ -26,6 +26,7 @@ namespace CXManagmentMVP.Infrastructure
             service.AddScoped<ICustomerAppKeywordValueRepository, CustomerAppKeywordValueRepository>();
             service.AddScoped<IJourneyEventRepository, JourneyEventRepository>();
             service.AddScoped<IKeywordRepository, KeywordRepository>();
+
 
 
             return service;

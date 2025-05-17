@@ -1,19 +1,21 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
+﻿using MediatR.NotificationPublishers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CXManagement.Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApplicationDI(this IServiceCollection services)
+        public static IServiceCollection AddApplicationDI(this IServiceCollection service)
         {
-            services.AddMediatR(cfg =>
+            service.AddMediatR(cfg =>
             {
-                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+                cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
+                cfg.NotificationPublisher = new TaskWhenAllPublisher();
+
             });
 
 
-            return services;
+            return service;
         }
     }
 }

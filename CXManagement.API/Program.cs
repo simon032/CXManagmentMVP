@@ -1,6 +1,12 @@
 using CXManagement.API;
+using CXManagmentMVP.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<CXManagementDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+     b => b.MigrationsAssembly("CXManagmentMVP.Infrastructure")));
 
 // Add services to the container.
 builder.Services.AddAppDI(builder.Configuration);
