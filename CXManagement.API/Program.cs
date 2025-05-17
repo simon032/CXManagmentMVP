@@ -16,7 +16,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var AllowBlazorUI = "AllowBlazorUI";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazorUI", policy =>
+    {
+        policy.WithOrigins("https://localhost:7186")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
+
+
 var app = builder.Build();
+app.UseCors(AllowBlazorUI);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
