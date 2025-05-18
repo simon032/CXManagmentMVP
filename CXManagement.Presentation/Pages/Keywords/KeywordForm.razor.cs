@@ -65,8 +65,8 @@ namespace CXManagement.Presentation.Pages.Keywords
 
             if (IsEdit)
             {
-                await Presenter.LoadKeywordByIdAsync(Model.CXKeywordID);
-                StateHasChanged();
+                //await Presenter.LoadKeywordByIdAsync(Model.CXKeywordID);
+                //StateHasChanged();
                 var success = await Presenter.UpdateKeywordAsync(new UpdateKeywordDto
                 {
                     CXKeywordID = Model.CXKeywordID,
