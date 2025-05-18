@@ -17,4 +17,8 @@ builder.Services.AddScoped(sp => new HttpClient
 builder.Services.AddScoped<ApplicationService>();
 builder.Services.AddScoped<ApplicationPresenter>();
 
+builder.Services.AddScoped<KeywordService>();
+builder.Services.AddScoped<KeywordPresenter>();
+
+
 await builder.Build().RunAsync();

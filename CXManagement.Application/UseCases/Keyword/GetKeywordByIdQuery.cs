@@ -1,6 +1,6 @@
-﻿using CXManagement.Application.DTOs.CX_Keyword;
+﻿using CXManagement.Application.DTOs.CX_Application_Keyword;
+using CXManagement.Application.DTOs.CX_Keyword;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.Keyword
@@ -12,9 +12,9 @@ namespace CXManagement.Application.UseCases.Keyword
 
     public class GetKeywordByIdQueryHandler : IRequestHandler<GetKeywordByIdQuery, KeywordDto>
     {
-        private readonly IRepository<CX_Keyword> _repository;
+        private readonly IKeywordRepository _repository;
 
-        public GetKeywordByIdQueryHandler(IRepository<CX_Keyword> repository)
+        public GetKeywordByIdQueryHandler(IKeywordRepository repository)
         {
             _repository = repository;
         }
@@ -31,7 +31,16 @@ namespace CXManagement.Application.UseCases.Keyword
                 CXKeywordDescription = entity.CXKeywordDescription,
                 CXKeywordDataType = entity.CXKeywordDataType,
                 CXKeywordScoringFormula = entity.CXKeywordScoringFormula,
-                CXKeywordIsActive = entity.CXKeywordIsActive,
+                CXKeywordIsActive = (bool)entity.CXKeywordIsActive,
+                ApplicationKeywords = entity.ApplicationKeywords?
+                .Select(ak => new ApplicationKeywordDto
+                {
+                    CXAKID = ak.CXAKID,
+                    CXASID = ak.CXASID,
+                    CXKeywordID = ak.CXKeywordID,
+                    CXAKWeight = ak.CXAKWeight
+                })
+                .ToList(),
                 CreateAt = entity.CreateAt,
                 ModifyAt = entity.ModifyAt,
                 CreateBy = entity.CreateBy

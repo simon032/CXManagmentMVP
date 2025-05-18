@@ -57,5 +57,14 @@ namespace CXManagement.API.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{keywordId:int}/{applicationId:int}")]
+        public async Task<IActionResult> DeleteByKeywordIdApplicationId(int keywordId, int applicationId)
+        {
+            var success = await _mediator.Send(new DeleteByKeywordIdApplicationIdCommand { KeywordId = keywordId, ApplicationId = applicationId });
+            if (!success) return NotFound();
+
+            return NoContent();
+        }
     }
 }

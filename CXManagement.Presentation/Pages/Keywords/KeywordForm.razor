@@ -1,0 +1,120 @@
+﻿@page "/keywords/edit/{Id:int}"
+@page "/keywords/create"
+
+@using CXManagement.Application.DTOs.CX_Keyword
+@using Microsoft.AspNetCore.Components.Forms
+
+<h3>@(IsEdit ? "Edit Keyword" : "Create Keyword")</h3>
+
+@if (IsLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <p class="text-danger">@ErrorMessage</p>
+}
+else if (!IsEdit)
+{
+    <EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <InputText class="form-control" @bind-Value="Model.CXKeywordName" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <InputText class="form-control" @bind-Value="Model.CXKeywordDescription" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data Type</label>
+            <InputText class="form-control" @bind-Value="Model.CXKeywordDataType" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">ScoringFormula</label>
+            <InputText class="form-control" @bind-Value="Model.CXKeywordScoringFormula" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Is Active</label>
+            <InputCheckbox class="form-check-input" @bind-Value="Model.CXKeywordIsActive" />
+        </div>
+
+        <button type="submit" class="btn btn-success">@((IsEdit) ? "Update" : "Create")</button>
+        <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+    </EditForm>
+}
+else
+{
+    <EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <InputText class="form-control" @bind-Value="Model.CXKeywordName" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <InputText class="form-control" @bind-Value="Model.CXKeywordDescription " />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data Type</label>
+            <InputText class="form-control" @bind-Value="Model.CXKeywordDataType" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">ScoringFormula</label>
+            <InputText class="form-control" @bind-Value="Model.CXKeywordScoringFormula" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Is Active</label>
+            <InputCheckbox class="form-check-input" @bind-Value="Model.CXKeywordIsActive" />
+        </div>
+
+        <button type="submit" class="btn btn-success">@((IsEdit) ? "Update" : "Create")</button>
+        <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+    </EditForm>
+    <hr />
+    <h5>Assign Applications</h5>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <InputSelect class="form-select" @bind-Value="SelectedApplicationId">
+                <option value="">-- Select Application --</option>
+                @foreach (var app in FilteredApplications)
+                {
+                    <option value="@app.CXAID">@app.CXAName</option>
+                }
+            </InputSelect>
+        </div>
+        <button class="btn btn-primary" @onclick="AddApplicationKeyword" disabled="@(!SelectedApplicationId.HasValue || IsProcessingAppAssignment)">
+            Add
+        </button>
+    </div>
+    @if (Model.ApplicationKeywords?.Any() == true)
+    {
+        <h6>Assigned Applications</h6>
+        <ul class="list-group">
+            @foreach (var appKeyword in Model.ApplicationKeywords)
+            {
+                var app = Applications.FirstOrDefault(a => a.CXAID == appKeyword.CXASID);
+                if (app != null)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        @app.CXAName
+                        <button class="btn btn-danger btn-sm" @onclick="() => RemoveApplicationKeyword(appKeyword.CXASID)">Delete</button>
+                    </li>
+                }
+            }
+        </ul>
+    }
+}

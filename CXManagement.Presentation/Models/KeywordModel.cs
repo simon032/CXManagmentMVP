@@ -1,6 +1,6 @@
-﻿namespace CXManagmentMVP.Domain.Entities
+﻿namespace CXManagement.Presentation.Models
 {
-    public class CX_Keyword
+    public class KeywordModel
     {
         public int CXKeywordID { get; set; }
         public string? CXKeywordName { get; set; }
@@ -12,7 +12,7 @@
         public DateTime? ModifyAt { get; set; }
         public int? CreateBy { get; set; }
 
-        public ICollection<CX_Application_Keyword>? ApplicationKeywords { get; set; }
-
+        public int? CXAID { get; set; }
+        public double? CXAKWeight { get; set; }
     }
 }

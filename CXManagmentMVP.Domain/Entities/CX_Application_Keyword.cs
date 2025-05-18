@@ -4,7 +4,7 @@
     {
         public int CXAKID { get; set; }
         public int? CXASID { get; set; }
-        public int? CXKeywordID { get; set; }
+        public int CXKeywordID { get; set; }
         public float? CXAKWeight { get; set; }
 
         public CX_Application? Application { get; set; }

@@ -34,6 +34,11 @@ namespace CXManagmentMVP.Infrastructure.Repositories
             return await _context.ApplicationKeywords.FindAsync(id);
         }
 
+        public async Task<CX_Application_Keyword> GetByKeywordIdApplicationIdAsync(int keywordId, int applicationId)
+        {
+            return await _context.ApplicationKeywords.FirstOrDefaultAsync(ak => ak.CXASID == applicationId && ak.CXKeywordID == keywordId);
+        }
+
         public void Update(CX_Application_Keyword entity)
         {
             _context.ApplicationKeywords.Update(entity);

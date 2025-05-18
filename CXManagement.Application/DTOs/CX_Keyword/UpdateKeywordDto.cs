@@ -10,5 +10,6 @@
         public bool? CXKeywordIsActive { get; set; }
         public DateTime? ModifyAt { get; set; }
         public int? ModifyBy { get; set; }
+
     }
 }

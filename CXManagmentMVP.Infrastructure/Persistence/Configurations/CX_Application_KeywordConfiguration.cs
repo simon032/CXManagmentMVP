@@ -12,14 +12,15 @@ namespace CXManagmentMVP.Infrastructure.Persistence.Configurations
 
             builder.Property(e => e.CXAKWeight);
 
-            builder.HasOne(e => e.Application)
-                .WithMany(a => a.ApplicationKeywords)
-                .HasForeignKey(e => e.CXASID)
-                .OnDelete(DeleteBehavior.Restrict);
-
             builder.HasOne(e => e.Keyword)
-                .WithMany(k => k.ApplicationKeywords)
-                .HasForeignKey(e => e.CXKeywordID)
+                 .WithMany(k => k.ApplicationKeywords)
+                 .HasForeignKey(e => e.CXKeywordID)
+                 .IsRequired()
+                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(e => e.Application)
+                .WithMany(a => a.ApplicationKeywords) // ← if exists
+                .HasForeignKey(e => e.CXASID)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(e => e.Values)

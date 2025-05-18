@@ -24,12 +24,19 @@ namespace CXManagement.Application.UseCases.ApplicationKeyword
             var entity = new CX_Application_Keyword
             {
                 CXASID = request.ApplicationKeyword.CXASID,
-                CXKeywordID = request.ApplicationKeyword.CXKeywordID,
+                CXKeywordID = (int)request.ApplicationKeyword.CXKeywordID,
                 CXAKWeight = (float?)request.ApplicationKeyword.CXAKWeight
             };
-
-            await _repository.AddAsync(entity);
-            await _repository.SaveChangesAsync();
+            try
+            {
+                await _repository.AddAsync(entity);
+                await _repository.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to save CX_Application_Keyword: " + ex.Message);
+                throw;
+            }
 
             return entity.CXAKID;
         }

@@ -1,4 +1,6 @@
-﻿namespace CXManagement.Application.DTOs.CX_Application_Keyword
+﻿using CXManagement.Application.DTOs.CX_Application;
+
+namespace CXManagement.Application.DTOs.CX_Application_Keyword
 {
     public class ApplicationKeywordDto
     {
@@ -6,5 +8,6 @@
         public int? CXASID { get; set; }
         public int? CXKeywordID { get; set; }
         public double? CXAKWeight { get; set; }
+        public ApplicationDto? Application { get; set; }
     }
 }

@@ -26,12 +26,17 @@ namespace CXManagmentMVP.Infrastructure.Repositories
 
         public async Task<IEnumerable<CX_Keyword>> GetAllAsync()
         {
-            return await _context.Keywords.ToListAsync();
+            return await _context.Keywords
+                    .Include(k => k.ApplicationKeywords)
+                     .ThenInclude(ak => ak.Application)
+                    .ToListAsync();
         }
 
         public async Task<CX_Keyword> GetByIdAsync(int id)
         {
-            return await _context.Keywords.FindAsync(id);
+            var result = await _context.Keywords.Include(k => k.ApplicationKeywords).FirstOrDefaultAsync(k => k.CXKeywordID == id);
+
+            return result;
         }
 
         public void Update(CX_Keyword entity)
