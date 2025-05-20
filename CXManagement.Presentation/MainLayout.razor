@@ -1,19 +1,18 @@
 ﻿@inherits LayoutComponentBase
 
-<nav class="p-3 border-bottom">
+<nav>
     <NavLink href="/" class="me-3">Home</NavLink>
 
-    <NavLink href="/applications/create" class="me-3">New Application</NavLink>
-    <NavLink href="/applications" class="me-3">List of Application</NavLink>
+    <NavLink href="/applications/create">New Application</NavLink>
+    <NavLink href="/applications">List of Applications</NavLink>
 
-    <NavLink href="/keywords/create" class="me-3">New Keyword</NavLink>
-    <NavLink href="/keywords" class="me-3">List of Keywords</NavLink>
+    <NavLink href="/keywords/create">New Keyword</NavLink>
+    <NavLink href="/keywords">List of Keywords</NavLink>
 
-    <NavLink href="/customers/create" class="me-3">New Customer</NavLink>
-    <NavLink href="/customers" class="me-3">List of Customer</NavLink>
-
+    <NavLink href="/customers/create">New Customer</NavLink>
+    <NavLink href="/customers">List of Customers</NavLink>
 </nav>
 
-<main class="p-4">
+<main>
     @Body
 </main>

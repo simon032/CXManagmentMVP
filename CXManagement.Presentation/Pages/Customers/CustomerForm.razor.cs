@@ -39,8 +39,8 @@ namespace CXManagement.Presentation.Pages.Customers
             EditingRecordId = record.CXCAKVID;
             IsEditingKeywordValue = true;
 
-            SelectedApplicationId = null;
-            SelectedKeywordId = null;
+            //SelectedApplicationId = null;
+            //SelectedKeywordId = null;
 
 
             EditingCustomerKeywordValueModel = new CustomerAppKeywordValueViewDto
@@ -204,17 +204,16 @@ namespace CXManagement.Presentation.Pages.Customers
         protected async Task OnApplicationChanged(ChangeEventArgs e)
         {
             SelectedApplicationId = int.TryParse(e.Value?.ToString(), out var appId) ? appId : null;
-            SelectedKeywordId = null;
-            Keywords.Clear();
-            SelectedKeywordId = null;
-            CustomerKeywordValueModel = new();
+            //SelectedKeywordId = null;
+            //Keywords.Clear();
+            //CustomerKeywordValueModel = new();
             await Presenter.LoadKeywordsForApplicationAsync(SelectedApplicationId.Value);
         }
 
         protected void OnKeywordChanged(ChangeEventArgs e)
         {
             SelectedKeywordId = int.TryParse(e.Value?.ToString(), out var keywordId) ? keywordId : null;
-            CustomerKeywordValueModel = new();
+            //CustomerKeywordValueModel = new();
         }
 
         protected async Task HandleKeywordValueSubmit()

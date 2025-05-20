@@ -26,6 +26,7 @@ else
                 <th>Active</th>
                 <th>Created At</th>
                 <th>Created By</th>
+                <th>Modify At</th>
                 <th>Applications</th> @* New Column *@
                 <th>Actions</th>
             </tr>
@@ -40,6 +41,7 @@ else
                     <td>@(keyword.CXKeywordIsActive == true ? "Yes" : "No")</td>
                     <td>@(keyword.CreateAt.HasValue ? keyword.CreateAt.Value.ToLocalTime().ToString("g") : "")</td>
                     <td>@keyword.CreateBy</td>
+                    <td>@(keyword.ModifyAt.HasValue ? keyword.ModifyAt.Value.ToLocalTime().ToString("g") : "")</td>
                     <td>
                         @if (keyword.ApplicationKeywords != null && keyword.ApplicationKeywords.Any(ak => ak.Application != null))
                         {

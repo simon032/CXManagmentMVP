@@ -26,6 +26,7 @@ else
                 <th>Phone</th>
                 <th>Created At</th>
                 <th>Created By</th>
+                <th>Modify At</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -39,6 +40,7 @@ else
                     <td>@customer.CXCustomerPhone</td>
                     <td>@(customer.CreateAt?.ToLocalTime().ToString("g"))</td>
                     <td>@customer.CreateBy</td>
+                    <td>@(customer.ModifyAt?.ToLocalTime().ToString("g"))</td>
                     <td>
                         <a class="btn btn-sm btn-primary" href="/customers/edit/@customer.CXCustomerID">Edit</a>
                         <a href="#" @onclick="() => DeleteCustomerAsync(customer.CXCustomerID)" @onclick:preventDefault>Delete</a>

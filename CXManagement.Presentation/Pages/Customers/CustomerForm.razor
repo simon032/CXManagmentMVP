@@ -61,7 +61,7 @@ else
                         <td><label for="appSelect">Select Application</label></td>
                         <td>
                             <select id="appSelect" class="form-select" @onchange="OnApplicationChanged">
-                                <option value="" selected>-- Select Application --</option>
+                                <option value="">-- Select Application --</option>
                                 @foreach (var app in Applications)
                                 {
                                     <option value="@app.CXAID">@app.CXAName</option>
@@ -108,7 +108,8 @@ else
         {
             <hr />
             <h5>Edit Keyword Value</h5>
-
+             <EditForm Model="EditingCustomerKeywordValueModel" OnValidSubmit="HandleEditKeywordValueSubmit">
+        <DataAnnotationsValidator />
                 <table class="table table-borderless">
                     <tbody>
                         <tr>
@@ -134,6 +135,7 @@ else
                         </tr>
                     </tbody>
                 </table>
+            </EditForm>
             
         }
              

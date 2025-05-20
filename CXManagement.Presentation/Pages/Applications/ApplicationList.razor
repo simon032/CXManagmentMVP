@@ -25,6 +25,7 @@ else
                 <th>Name</th>
                 <th>Created At</th>
                 <th>Created By</th>
+                <th>Modify At</th>
                 <th>Actions</th> @* New column for Edit button *@
             </tr>
         </thead>
@@ -37,6 +38,8 @@ else
                     <td>@app.CXAName</td>
                     <td>@(app.CreateAt.HasValue ? app.CreateAt.Value.ToLocalTime().ToString("g") : "")</td>
                     <td>@app.CreateBy</td>
+                    <td>@app.ModifyAt</td>
+
                     <td>
                         <a class="btn btn-sm btn-primary" href="/applications/edit/@app.CXAID">Edit</a>
                         <a href="#" @onclick="() => DeleteApplicationAsync(app.CXAID)" @onclick:preventDefault>Delete</a>
