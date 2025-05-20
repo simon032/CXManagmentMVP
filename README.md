@@ -7,21 +7,23 @@ Follow the steps below to configure the solution startup projects and set up the
 1. Configuring Startup Projects
 Right-click on the Solution and select Set Startup Projects.
 
-In the left pane, select Startup Project.
-
-Choose the option "Multiple startup projects".
-
-Set CXManagement.API to Start.
-
-Set CXManagement.Presentation to Start.
-
-Click OK to apply the changes.
+        In the left pane, select Startup Project.
+        
+        Choose the option "Multiple startup projects".
+        
+        Set CXManagement.API to Start.
+        
+        Set CXManagement.Presentation to Start.
+        
+        Click OK to apply the changes.
 
 2. Database Migration Setup
-Open the Package Manager Console.
 
-Set the Default project to CXManagement.Infrastructure.
+        Open the Package Manager Console.
+        
+        Set the Default project to CXManagement.Infrastructure.
+        
+        Execute the following commands to create and apply the first migration:
 
-Execute the following commands to create and apply the first migration:
         Add-Migration InitialMigration
         Update-Database
