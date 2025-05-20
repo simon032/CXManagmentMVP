@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CXManagmentMVP.Infrastructure.Migrations
 {
     [DbContext(typeof(CXManagementDbContext))]
-    [Migration("20250517115849_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250520195522_2nd")]
+    partial class _2nd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,7 @@ namespace CXManagmentMVP.Infrastructure.Migrations
                     b.Property<int?>("CXASID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CXKeywordID")
+                    b.Property<int>("CXKeywordID")
                         .HasColumnType("int");
 
                     b.HasKey("CXAKID");
@@ -285,7 +285,8 @@ namespace CXManagmentMVP.Infrastructure.Migrations
                     b.HasOne("CXManagmentMVP.Domain.Entities.CX_Keyword", "Keyword")
                         .WithMany("ApplicationKeywords")
                         .HasForeignKey("CXKeywordID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Application");
 

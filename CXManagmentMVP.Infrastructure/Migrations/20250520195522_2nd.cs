@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CXManagmentMVP.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class _2nd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -100,7 +100,7 @@ namespace CXManagmentMVP.Infrastructure.Migrations
                     CXAKID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CXASID = table.Column<int>(type: "int", nullable: true),
-                    CXKeywordID = table.Column<int>(type: "int", nullable: true),
+                    CXKeywordID = table.Column<int>(type: "int", nullable: false),
                     CXAKWeight = table.Column<float>(type: "real", nullable: true)
                 },
                 constraints: table =>
