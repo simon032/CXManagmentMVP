@@ -41,8 +41,8 @@ else
                     <td>@app.ModifyAt</td>
 
                     <td>
-                        <a class="btn btn-sm btn-primary" href="/applications/edit/@app.CXAID">Edit</a>
-                        <a href="#" @onclick="() => DeleteApplicationAsync(app.CXAID)" @onclick:preventDefault>Delete</a>
+                        <a  href="/applications/edit/@app.CXAID">Edit</a>
+                        <a  href="#" @onclick="() => DeleteApplicationAsync(app.CXAID)" @onclick:preventDefault>Delete</a>
                     </td>
                 </tr>
             }
