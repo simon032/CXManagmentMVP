@@ -4,13 +4,17 @@ Database ER Diagram
 Project Initial Setup Tutorial:
 
   Right-click on the Solution and select Set Startup Projects.
+  
   Select the option "Multiple startup projects".
+  
   Set CXManagement.API to Start.
+  
   Set CXManagement.Presentation to Start.
   
   Open the Package Manager Console.
   
   Set the Default project to CXManagement.Infrastructure.
+  
   Run the following commands to create and apply the first migration.
     Add-Migration
     Update-Database
