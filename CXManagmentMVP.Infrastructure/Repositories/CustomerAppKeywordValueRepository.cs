@@ -43,5 +43,15 @@ namespace CXManagmentMVP.Infrastructure.Repositories
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<IEnumerable<CX_Customer_AppKeyword_Value>> GetCustomerAppKeywordValueViewByCustomerId(int id)
+        {
+            return await _context.CustomerAppKeywordValues.Include(c => c.ApplicationKeyword)
+                    .ThenInclude(ak => ak.Application)
+                    .Include(c => c.ApplicationKeyword)
+                    .ThenInclude(ak => ak.Keyword)
+                    .Where(c => c.CXCustomerID == id)
+                    .ToListAsync();
+        }
     }
 }

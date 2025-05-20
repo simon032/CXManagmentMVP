@@ -2,8 +2,14 @@
 
 namespace CXManagement.Application.Interfaces
 {
-    public interface IApplicationRepository : IRepository<CX_Application>
+    public interface IApplicationRepository
     {
-        // Additional methods specific to Application can be added here
+        Task<CX_Application> GetByIdAsync(int id);
+        Task<IEnumerable<CX_Application>> GetAllAsync();
+        Task AddAsync(CX_Application entity);
+        void Update(CX_Application entity);
+        void Delete(CX_Application entity);
+        Task<bool> SaveChangesAsync();
+        Task<IEnumerable<CX_Application>> GetAllApplicationKeywords();
     }
 }

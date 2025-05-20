@@ -1,0 +1,50 @@
+﻿@page "/customers"
+@inherits CustomerListBase
+
+<h3>Customers</h3>
+
+@if (IsLoading)
+{
+    <p><em>Loading customers...</em></p>
+}
+else if (LoadError)
+{
+    <p class="text-danger">Error loading customers. Please try again later.</p>
+}
+else if (Customers?.Any() != true)
+{
+    <p>No customers found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Created At</th>
+                <th>Created By</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Customers)
+            {
+                <tr>
+                    <td>@customer.CXCustomerID</td>
+                    <td>@customer.CXCustomerFullName</td>
+                    <td>@customer.CXCustomerEmail</td>
+                    <td>@customer.CXCustomerPhone</td>
+                    <td>@(customer.CreateAt?.ToLocalTime().ToString("g"))</td>
+                    <td>@customer.CreateBy</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="/customers/edit/@customer.CXCustomerID">Edit</a>
+                        <a href="#" @onclick="() => DeleteCustomerAsync(customer.CXCustomerID)" @onclick:preventDefault>Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

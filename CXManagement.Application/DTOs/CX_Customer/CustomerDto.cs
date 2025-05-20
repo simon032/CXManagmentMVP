@@ -1,4 +1,6 @@
-﻿namespace CXManagement.Application.DTOs.CX_Customer
+﻿using CXManagement.Application.DTOs.CX_Customer_AppKeyword_Value;
+
+namespace CXManagement.Application.DTOs.CX_Customer
 {
     public class CustomerDto
     {
@@ -9,5 +11,7 @@
         public DateTime? CreateAt { get; set; }
         public DateTime? ModifyAt { get; set; }
         public int? CreateBy { get; set; }
+
+        public ICollection<CustomerAppKeywordValueDto>? Values { get; set; }
     }
 }

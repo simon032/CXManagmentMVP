@@ -20,5 +20,8 @@ builder.Services.AddScoped<ApplicationPresenter>();
 builder.Services.AddScoped<KeywordService>();
 builder.Services.AddScoped<KeywordPresenter>();
 
+builder.Services.AddScoped<CustomerService>();
+builder.Services.AddScoped<CustomerPresenter>();
+
 
 await builder.Build().RunAsync();

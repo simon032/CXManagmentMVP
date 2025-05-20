@@ -65,5 +65,13 @@ namespace CXManagement.Presentation.Services.Http
             var response = await _http.DeleteAsync(requestUri);
             return response.IsSuccessStatusCode;
         }
+
+        public async Task<IEnumerable<KeywordDto>> GetAllKeywordsByApplicationIdAsync(int appId)
+        {
+            return await _http.GetFromJsonAsync<IEnumerable<KeywordDto>>(
+                $"api/keyword/GetAllKeywordsByApplicationId/{appId}"
+            );
+        }
+
     }
 }

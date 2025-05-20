@@ -12,9 +12,9 @@ namespace CXManagement.Application.UseCases.CustomerAppKeywordValue
 
     public class CreateCustomerAppKeywordValueCommandHandler : IRequestHandler<CreateCustomerAppKeywordValueCommand, int>
     {
-        private readonly IRepository<CX_Customer_AppKeyword_Value> _repository;
+        private readonly ICustomerAppKeywordValueRepository _repository;
 
-        public CreateCustomerAppKeywordValueCommandHandler(IRepository<CX_Customer_AppKeyword_Value> repository)
+        public CreateCustomerAppKeywordValueCommandHandler(ICustomerAppKeywordValueRepository repository)
         {
             _repository = repository;
         }

@@ -30,6 +30,13 @@ namespace CXManagement.API.Controllers
             return Ok(keyword);
         }
 
+        [HttpGet("GetAllKeywordsByApplicationId/{appId}")]
+        public async Task<IActionResult> GetAllKeywordsByApplicationId(int appId)
+        {
+            var result = await _mediator.Send(new GetAllKeywordsByApplicationIdQuery { ApplicationId = appId });
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateKeywordCommand command)
         {

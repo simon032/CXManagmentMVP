@@ -43,5 +43,13 @@ namespace CXManagmentMVP.Infrastructure.Repositories
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<IEnumerable<CX_Application>> GetAllApplicationKeywords()
+        {
+            return await _context.Applications
+            .Where(app => app.ApplicationKeywords.Any())
+            .Include(app => app.ApplicationKeywords)
+            .ToListAsync();
+        }
     }
 }

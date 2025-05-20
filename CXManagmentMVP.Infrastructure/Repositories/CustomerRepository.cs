@@ -36,7 +36,7 @@ namespace CXManagmentMVP.Infrastructure.Repositories
 
         public async Task<CX_Customer> GetByIdAsync(int id)
         {
-            return await _context.Customers.FindAsync(id);
+            return await _context.Customers.Include(c => c.Values).FirstOrDefaultAsync(c => c.CXCustomerID == id);
         }
 
         public void Update(CX_Customer entity)

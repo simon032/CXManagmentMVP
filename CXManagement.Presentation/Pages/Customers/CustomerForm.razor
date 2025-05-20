@@ -1,0 +1,181 @@
+﻿@page "/customers/edit/{Id:int?}"
+@page "/customers/create"
+
+@using CXManagement.Application.DTOs.CX_Customer
+@using Microsoft.AspNetCore.Components.Forms
+
+<h3>@(IsEdit ? "Edit Customer" : "Create Customer")</h3>
+
+@if (IsLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!string.IsNullOrWhiteSpace(ErrorMessage))
+{
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
+else
+{
+    <EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <td><label for="fullName" class="form-label">Full Name</label></td>
+                    <td><InputText id="fullName" class="form-control" @bind-Value="Model.CXCustomerFullName" autocomplete="off" /></td>
+                </tr>
+                <tr>
+                    <td><label for="email" class="form-label">Email</label></td>
+                    <td><InputText id="email" type="email" class="form-control" @bind-Value="Model.CXCustomerEmail" autocomplete="off" /></td>
+                </tr>
+                <tr>
+                    <td><label for="phone" class="form-label">Phone</label></td>
+                    <td><InputText id="phone" class="form-control" @bind-Value="Model.CXCustomerPhone" autocomplete="off" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-success">@((IsEdit) ? "Update" : "Create")</button>
+                            <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </EditForm>
+
+    @if (IsEdit)
+    {
+        <hr />
+        <h5>Assign Keyword Value for Application</h5>
+
+                    <EditForm Model="CustomerKeywordValueModel" OnValidSubmit="HandleKeywordValueSubmit">
+                <DataAnnotationsValidator />
+
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td><label for="appSelect">Select Application</label></td>
+                        <td>
+                            <select id="appSelect" class="form-select" @onchange="OnApplicationChanged">
+                                <option value="" selected>-- Select Application --</option>
+                                @foreach (var app in Applications)
+                                {
+                                    <option value="@app.CXAID">@app.CXAName</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+
+                    @if (SelectedApplicationId.HasValue)
+                    {
+                        <tr>
+                            <td><label for="keywordSelect">Select Keyword</label></td>
+                            <td>
+                                <select id="keywordSelect" class="form-select" @onchange="OnKeywordChanged">
+                                    <option value="">-- Select Keyword --</option>
+                                    @foreach (var keyword in Keywords)
+                                    {
+                                        <option value="@keyword.CXKeywordID">@keyword.CXKeywordName</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                    }
+
+                    @if (SelectedKeywordId.HasValue)
+                    {
+                        <tr>
+                            <td><label for="value">Value</label></td>
+                            <td>
+                 
+                                    <div class="d-flex gap-2">
+                                        <InputText id="value" class="form-control me-2" @bind-Value="CustomerKeywordValueModel.CXCAKVValueString" />
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+                   </EditForm>
+        @if (IsEditingKeywordValue && EditingCustomerKeywordValueModel is not null)
+        {
+            <hr />
+            <h5>Edit Keyword Value</h5>
+
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td><label>Application</label></td>
+                            <td><InputText class="form-control" @bind-Value="EditingCustomerKeywordValueModel.ApplicationName" disabled /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Keyword</label></td>
+                            <td><InputText class="form-control" @bind-Value="EditingCustomerKeywordValueModel.KeywordName" disabled /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Value</label></td>
+                            <td><InputText class="form-control" @bind-Value="EditingCustomerKeywordValueModel.CXCAKVValueString" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="button" class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+        }
+             
+
+       
+
+        @if (Model.Values.Any())
+        {
+            <h5>Assigned Keyword Values for Application</h5>
+
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Application</th>
+                        <th>Keyword</th>
+                        <th>Value</th>
+                        <th>Assigned Date</th>
+                        <th>Created At</th>
+                        <th>Modified At</th>
+                        <th>Created By</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var record in CustomerAppKeywordValueView)
+                    {
+                        <tr>
+                            <td>@record.ApplicationName</td>
+                            <td>@record.KeywordName</td>
+                            <td>@record.CXCAKVValueString</td>
+                            <td>@(record.CXCAKVAssignedDate?.ToLocalTime().ToString("g") ?? "None")</td>
+                            <td>@(record.CreateAt?.ToLocalTime().ToString("g") ?? "None")</td>
+                            <td>@(record.ModifyAt?.ToLocalTime().ToString("g") ?? "None")</td>
+                            <td>@record.CreateBy</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary me-1" @onclick="() => StartEdit(record)">Edit</button>
+                                <button class="btn btn-sm btn-danger" @onclick="() => DeleteKeywordValueAsync(record.CXCAKVID)">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+}

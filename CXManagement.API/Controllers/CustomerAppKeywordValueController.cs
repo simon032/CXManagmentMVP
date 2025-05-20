@@ -30,6 +30,14 @@ namespace CXManagement.API.Controllers
             return Ok(result);
         }
 
+
+        [HttpGet("GetCustomerAppKeywordValueViewByCustomerId/{customerId}")]
+        public async Task<IActionResult> GetCustomerAppKeywordValueViewByCustomerId(int customerId)
+        {
+            var result = await _mediator.Send(new GetCustomerAppKeywordValueViewByCustomerIdQuery { CXCustomerID = customerId });
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCustomerAppKeywordValueCommand command)
         {

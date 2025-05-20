@@ -20,33 +20,37 @@ else if (!IsEdit)
         <DataAnnotationsValidator />
         <ValidationSummary />
 
-        <div class="mb-3">
-            <label class="form-label">Name</label>
-            <InputText class="form-control" @bind-Value="Model.CXKeywordName" />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Description</label>
-            <InputText class="form-control" @bind-Value="Model.CXKeywordDescription" />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Data Type</label>
-            <InputText class="form-control" @bind-Value="Model.CXKeywordDataType" />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">ScoringFormula</label>
-            <InputText class="form-control" @bind-Value="Model.CXKeywordScoringFormula" />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Is Active</label>
-            <InputCheckbox class="form-check-input" @bind-Value="Model.CXKeywordIsActive" />
-        </div>
-
-        <button type="submit" class="btn btn-success">@((IsEdit) ? "Update" : "Create")</button>
-        <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <td><label for="CXKeywordName">Name</label></td>
+                    <td><InputText id="CXKeywordName" class="form-control" @bind-Value="Model.CXKeywordName" /></td>
+                </tr>
+                <tr>
+                    <td><label for="CXKeywordDescription">Description</label></td>
+                    <td><InputText id="CXKeywordDescription" class="form-control" @bind-Value="Model.CXKeywordDescription" /></td>
+                </tr>
+                <tr>
+                    <td><label for="CXKeywordDataType">Data Type</label></td>
+                    <td><InputText id="CXKeywordDataType" class="form-control" @bind-Value="Model.CXKeywordDataType" /></td>
+                </tr>
+                <tr>
+                    <td><label for="CXKeywordScoringFormula">Scoring Formula</label></td>
+                    <td><InputText id="CXKeywordScoringFormula" class="form-control" @bind-Value="Model.CXKeywordScoringFormula" /></td>
+                </tr>
+                <tr>
+                    <td><label for="CXKeywordIsActive">Is Active</label></td>
+                    <td><InputCheckbox id="CXKeywordIsActive" class="form-check-input" @bind-Value="Model.CXKeywordIsActive" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" class="btn btn-success">@((IsEdit) ? "Update" : "Create")</button>
+                        <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </EditForm>
 }
 else
@@ -55,66 +59,87 @@ else
         <DataAnnotationsValidator />
         <ValidationSummary />
 
-        <div class="mb-3">
-            <label class="form-label">Name</label>
-            <InputText class="form-control" @bind-Value="Model.CXKeywordName" />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Description</label>
-            <InputText class="form-control" @bind-Value="Model.CXKeywordDescription " />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Data Type</label>
-            <InputText class="form-control" @bind-Value="Model.CXKeywordDataType" />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">ScoringFormula</label>
-            <InputText class="form-control" @bind-Value="Model.CXKeywordScoringFormula" />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Is Active</label>
-            <InputCheckbox class="form-check-input" @bind-Value="Model.CXKeywordIsActive" />
-        </div>
-
-        <button type="submit" class="btn btn-success">@((IsEdit) ? "Update" : "Create")</button>
-        <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <td><label for="CXKeywordName">Name</label></td>
+                    <td><InputText id="CXKeywordName" class="form-control" @bind-Value="Model.CXKeywordName" /></td>
+                </tr>
+                <tr>
+                    <td><label for="CXKeywordDescription">Description</label></td>
+                    <td><InputText id="CXKeywordDescription" class="form-control" @bind-Value="Model.CXKeywordDescription" /></td>
+                </tr>
+                <tr>
+                    <td><label for="CXKeywordDataType">Data Type</label></td>
+                    <td><InputText id="CXKeywordDataType" class="form-control" @bind-Value="Model.CXKeywordDataType" /></td>
+                </tr>
+                <tr>
+                    <td><label for="CXKeywordScoringFormula">Scoring Formula</label></td>
+                    <td><InputText id="CXKeywordScoringFormula" class="form-control" @bind-Value="Model.CXKeywordScoringFormula" /></td>
+                </tr>
+                <tr>
+                    <td><label for="CXKeywordIsActive">Is Active</label></td>
+                    <td><InputCheckbox id="CXKeywordIsActive" class="form-check-input" @bind-Value="Model.CXKeywordIsActive" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" class="btn btn-success">@((IsEdit) ? "Update" : "Create")</button>
+                        <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </EditForm>
+
     <hr />
     <h5>Assign Applications</h5>
 
-    <div class="row mb-3">
-        <div class="col-6">
-            <InputSelect class="form-select" @bind-Value="SelectedApplicationId">
-                <option value="">-- Select Application --</option>
-                @foreach (var app in FilteredApplications)
-                {
-                    <option value="@app.CXAID">@app.CXAName</option>
-                }
-            </InputSelect>
-        </div>
-        <button class="btn btn-primary" @onclick="AddApplicationKeyword" disabled="@(!SelectedApplicationId.HasValue || IsProcessingAppAssignment)">
-            Add
-        </button>
-    </div>
+    <table class="table table-borderless mb-3">
+        <tbody>
+            <tr>
+                <td style="width: 70%;">
+                    <InputSelect class="form-select" @bind-Value="SelectedApplicationId">
+                        <option value="">-- Select Application --</option>
+                        @foreach (var app in FilteredApplications)
+                        {
+                            <option value="@app.CXAID">@app.CXAName</option>
+                        }
+                    </InputSelect>
+                </td>
+                <td>
+                    <button class="btn btn-primary" @onclick="AddApplicationKeyword" disabled="@(!SelectedApplicationId.HasValue || IsProcessingAppAssignment)">
+                        Add
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
     @if (Model.ApplicationKeywords?.Any() == true)
     {
-        <h6>Assigned Applications</h6>
-        <ul class="list-group">
-            @foreach (var appKeyword in Model.ApplicationKeywords)
-            {
-                var app = Applications.FirstOrDefault(a => a.CXAID == appKeyword.CXASID);
-                if (app != null)
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Application Name</th>
+                    <th style="width: 100px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var appKeyword in Model.ApplicationKeywords)
                 {
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        @app.CXAName
-                        <button class="btn btn-danger btn-sm" @onclick="() => RemoveApplicationKeyword(appKeyword.CXASID)">Delete</button>
-                    </li>
+                    var app = Applications.FirstOrDefault(a => a.CXAID == appKeyword.CXASID);
+                    if (app != null)
+                    {
+                        <tr>
+                            <td>@app.CXAName</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" @onclick="() => RemoveApplicationKeyword(appKeyword.CXASID)">Delete</button>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </ul>
+            </tbody>
+        </table>
     }
 }

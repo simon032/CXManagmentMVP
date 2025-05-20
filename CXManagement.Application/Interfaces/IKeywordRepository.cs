@@ -11,5 +11,13 @@ namespace CXManagement.Application.Interfaces
         void Update(CX_Keyword entity);
         void Delete(CX_Keyword entity);
         Task<bool> SaveChangesAsync();
+
+
+
+        Task<IEnumerable<CX_Keyword>> GetCustomerAppKeywordValueViewByCustomerId(int customerId);
+
+        Task<IEnumerable<CX_Keyword>> GetAllKeywordsByApplicationId(int appId);
+
+
     }
 }

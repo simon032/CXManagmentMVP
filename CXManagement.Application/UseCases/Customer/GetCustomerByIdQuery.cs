@@ -1,6 +1,6 @@
 ﻿using CXManagement.Application.DTOs.CX_Customer;
+using CXManagement.Application.DTOs.CX_Customer_AppKeyword_Value;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.Customer
@@ -12,9 +12,9 @@ namespace CXManagement.Application.UseCases.Customer
 
     public class GetCustomerByIdQueryHandler : IRequestHandler<GetCustomerByIdQuery, CustomerDto>
     {
-        private readonly IRepository<CX_Customer> _repository;
+        private readonly ICustomerRepository _repository;
 
-        public GetCustomerByIdQueryHandler(IRepository<CX_Customer> repository)
+        public GetCustomerByIdQueryHandler(ICustomerRepository repository)
         {
             _repository = repository;
         }
@@ -32,7 +32,19 @@ namespace CXManagement.Application.UseCases.Customer
                 CXCustomerPhone = entity.CXCustomerPhone,
                 CreateAt = entity.CreateAt,
                 ModifyAt = entity.ModifyAt,
-                CreateBy = entity.CreateBy
+                CreateBy = entity.CreateBy,
+                Values = entity.Values?.Select(c => new CustomerAppKeywordValueDto
+                {
+                    CXCAKVID = c.CXCAKVID,
+                    CXCustomerID = c.CXCustomerID,
+                    CXASKID = c.CXASKID,
+                    CXCAKVValueString = c.CXCAKVValueString,
+                    CXCAKVAssignedDate = c.CXCAKVAssignedDate,
+                    CreateAt = c.CreateAt,
+                    ModifyAt = c.ModifyAt,
+                    CreateBy = c.CreateBy,
+
+                }).ToList()
             };
         }
     }

@@ -22,7 +22,12 @@ namespace CXManagement.Presentation.Services.Http
         {
             return await _httpClient.GetFromJsonAsync<ApplicationDto>($"api/application/{id}");
         }
-
+        public async Task<IEnumerable<ApplicationDto>> GetAllApplicationKeywordsAsync()
+        {
+            return await _httpClient.GetFromJsonAsync<IEnumerable<ApplicationDto>>(
+                       "api/application/GetAllApplicationKeywordsAsync"
+                   ) ?? new List<ApplicationDto>();
+        }
         public async Task<int> CreateApplicationAsync(CreateApplicationDto dto)
         {
             var command = new CreateApplicationCommand
