@@ -2,8 +2,13 @@
 
 namespace CXManagement.Application.Interfaces
 {
-    public interface IJourneyEventRepository : IRepository<CX_JourneyEvent>
+    public interface IJourneyEventRepository
     {
-        // Additional methods specific to JourneyEvent can be added here
+        Task<CX_JourneyEvent> GetByIdAsync(int id);
+        Task<IEnumerable<CX_JourneyEvent>> GetAllAsync();
+        Task AddAsync(CX_JourneyEvent entity);
+        void Update(CX_JourneyEvent entity);
+        void Delete(CX_JourneyEvent entity);
+        Task<bool> SaveChangesAsync();
     }
 }

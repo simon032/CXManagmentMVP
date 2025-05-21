@@ -1,6 +1,5 @@
 ﻿using CXManagement.Application.DTOs.CX_Customer_AppKeyword_Value;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.CustomerAppKeywordValue
@@ -12,9 +11,9 @@ namespace CXManagement.Application.UseCases.CustomerAppKeywordValue
 
     public class UpdateCustomerAppKeywordValueCommandHandler : IRequestHandler<UpdateCustomerAppKeywordValueCommand, bool>
     {
-        private readonly IRepository<CX_Customer_AppKeyword_Value> _repository;
+        private readonly ICustomerAppKeywordValueRepository _repository;
 
-        public UpdateCustomerAppKeywordValueCommandHandler(IRepository<CX_Customer_AppKeyword_Value> repository)
+        public UpdateCustomerAppKeywordValueCommandHandler(ICustomerAppKeywordValueRepository repository)
         {
             _repository = repository;
         }

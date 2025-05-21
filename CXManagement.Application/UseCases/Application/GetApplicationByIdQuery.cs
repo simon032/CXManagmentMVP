@@ -1,6 +1,5 @@
 ﻿using CXManagement.Application.DTOs.CX_Application;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.Application
@@ -12,9 +11,9 @@ namespace CXManagement.Application.UseCases.Application
 
     public class GetApplicationByIdQueryHandler : IRequestHandler<GetApplicationByIdQuery, ApplicationDto>
     {
-        private readonly IRepository<CX_Application> _repository;
+        private readonly IApplicationRepository _repository;
 
-        public GetApplicationByIdQueryHandler(IRepository<CX_Application> repository)
+        public GetApplicationByIdQueryHandler(IApplicationRepository repository)
         {
             _repository = repository;
         }

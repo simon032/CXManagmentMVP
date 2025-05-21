@@ -1,6 +1,5 @@
 ﻿using CXManagement.Application.DTOs.CX_Customer_AppKeyword_Value;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.CustomerAppKeywordValue
@@ -12,9 +11,9 @@ namespace CXManagement.Application.UseCases.CustomerAppKeywordValue
 
     public class GetCustomerAppKeywordValueByIdQueryHandler : IRequestHandler<GetCustomerAppKeywordValueByIdQuery, CustomerAppKeywordValueDto>
     {
-        private readonly IRepository<CX_Customer_AppKeyword_Value> _repository;
+        private readonly ICustomerAppKeywordValueRepository _repository;
 
-        public GetCustomerAppKeywordValueByIdQueryHandler(IRepository<CX_Customer_AppKeyword_Value> repository)
+        public GetCustomerAppKeywordValueByIdQueryHandler(ICustomerAppKeywordValueRepository repository)
         {
             _repository = repository;
         }

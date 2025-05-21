@@ -1,5 +1,4 @@
 ﻿using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.Application
@@ -11,9 +10,9 @@ namespace CXManagement.Application.UseCases.Application
 
     public class DeleteApplicationCommandHandler : IRequestHandler<DeleteApplicationCommand, bool>
     {
-        private readonly IRepository<CX_Application> _repository;
+        private readonly IApplicationRepository _repository;
 
-        public DeleteApplicationCommandHandler(IRepository<CX_Application> repository)
+        public DeleteApplicationCommandHandler(IApplicationRepository repository)
         {
             _repository = repository;
         }

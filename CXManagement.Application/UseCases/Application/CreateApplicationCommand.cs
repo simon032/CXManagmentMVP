@@ -11,9 +11,9 @@ namespace CXManagement.Application.UseCases.Application
     }
     public class CreateApplicationCommandHandler : IRequestHandler<CreateApplicationCommand, int>
     {
-        private readonly IRepository<CX_Application> _repository;
+        private readonly IApplicationRepository _repository;
 
-        public CreateApplicationCommandHandler(IRepository<CX_Application> repository)
+        public CreateApplicationCommandHandler(IApplicationRepository repository)
         {
             _repository = repository;
         }

@@ -1,6 +1,5 @@
 ﻿using CXManagement.Application.DTOs.CX_Customer_AppKeyword_Score;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.CustomerAppKeywordScore
@@ -9,9 +8,9 @@ namespace CXManagement.Application.UseCases.CustomerAppKeywordScore
 
     public class GetAllCustomerAppKeywordScoresQueryHandler : IRequestHandler<GetAllCustomerAppKeywordScoresQuery, IEnumerable<CustomerAppKeywordScoreDto>>
     {
-        private readonly IRepository<CX_Customer_AppKeyword_Score> _repository;
+        private readonly ICustomerAppKeywordScoreRepository _repository;
 
-        public GetAllCustomerAppKeywordScoresQueryHandler(IRepository<CX_Customer_AppKeyword_Score> repository)
+        public GetAllCustomerAppKeywordScoresQueryHandler(ICustomerAppKeywordScoreRepository repository)
         {
             _repository = repository;
         }

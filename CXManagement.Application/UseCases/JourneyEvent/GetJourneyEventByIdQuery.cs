@@ -1,6 +1,5 @@
 ﻿using CXManagement.Application.DTOs.CX_JourneyEvent;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.JourneyEvent
@@ -12,9 +11,9 @@ namespace CXManagement.Application.UseCases.JourneyEvent
 
     public class GetJourneyEventByIdQueryHandler : IRequestHandler<GetJourneyEventByIdQuery, JourneyEventDto>
     {
-        private readonly IRepository<CX_JourneyEvent> _repository;
+        private readonly IJourneyEventRepository _repository;
 
-        public GetJourneyEventByIdQueryHandler(IRepository<CX_JourneyEvent> repository)
+        public GetJourneyEventByIdQueryHandler(IJourneyEventRepository repository)
         {
             _repository = repository;
         }

@@ -1,5 +1,4 @@
 ﻿using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.CustomerAppKeywordScore
@@ -11,9 +10,9 @@ namespace CXManagement.Application.UseCases.CustomerAppKeywordScore
 
     public class DeleteCustomerAppKeywordScoreCommandHandler : IRequestHandler<DeleteCustomerAppKeywordScoreCommand, bool>
     {
-        private readonly IRepository<CX_Customer_AppKeyword_Score> _repository;
+        private readonly ICustomerAppKeywordScoreRepository _repository;
 
-        public DeleteCustomerAppKeywordScoreCommandHandler(IRepository<CX_Customer_AppKeyword_Score> repository)
+        public DeleteCustomerAppKeywordScoreCommandHandler(ICustomerAppKeywordScoreRepository repository)
         {
             _repository = repository;
         }

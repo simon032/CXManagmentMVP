@@ -12,9 +12,9 @@ namespace CXManagement.Application.UseCases.Customer
 
     public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, int>
     {
-        private readonly IRepository<CX_Customer> _repository;
+        private readonly ICustomerRepository _repository;
 
-        public CreateCustomerCommandHandler(IRepository<CX_Customer> repository)
+        public CreateCustomerCommandHandler(ICustomerRepository repository)
         {
             _repository = repository;
         }

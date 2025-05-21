@@ -1,6 +1,5 @@
 ﻿using CXManagement.Application.DTOs.CX_Keyword;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.Keyword
@@ -12,9 +11,9 @@ namespace CXManagement.Application.UseCases.Keyword
 
     public class UpdateKeywordCommandHandler : IRequestHandler<UpdateKeywordCommand, bool>
     {
-        private readonly IRepository<CX_Keyword> _repository;
+        private readonly IKeywordRepository _repository;
 
-        public UpdateKeywordCommandHandler(IRepository<CX_Keyword> repository)
+        public UpdateKeywordCommandHandler(IKeywordRepository repository)
         {
             _repository = repository;
         }

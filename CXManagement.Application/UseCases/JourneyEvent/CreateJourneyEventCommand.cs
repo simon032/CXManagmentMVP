@@ -13,9 +13,9 @@ namespace CXManagement.Application.UseCases.JourneyEvent
 
     public class CreateJourneyEventCommandHandler : IRequestHandler<CreateJourneyEventCommand, int>
     {
-        private readonly IRepository<CX_JourneyEvent> _repository;
+        private readonly IJourneyEventRepository _repository;
 
-        public CreateJourneyEventCommandHandler(IRepository<CX_JourneyEvent> repository)
+        public CreateJourneyEventCommandHandler(IJourneyEventRepository repository)
         {
             _repository = repository;
         }

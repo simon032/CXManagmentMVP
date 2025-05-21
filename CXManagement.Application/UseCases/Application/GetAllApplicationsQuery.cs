@@ -1,6 +1,5 @@
 ﻿using CXManagement.Application.DTOs.CX_Application;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.Application
@@ -11,9 +10,9 @@ namespace CXManagement.Application.UseCases.Application
 
     public class GetAllApplicationsQueryHandler : IRequestHandler<GetAllApplicationsQuery, IEnumerable<ApplicationDto>>
     {
-        private readonly IRepository<CX_Application> _repository;
+        private readonly IApplicationRepository _repository;
 
-        public GetAllApplicationsQueryHandler(IRepository<CX_Application> repository)
+        public GetAllApplicationsQueryHandler(IApplicationRepository repository)
         {
             _repository = repository;
         }

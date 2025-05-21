@@ -17,7 +17,6 @@ namespace CXManagmentMVP.Infrastructure
                 options.UseSqlServer(provider.GetRequiredService<IOptionsSnapshot<ConnectionStringOptions>>().Value.DefaultConnection);
             });
 
-            service.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             service.AddScoped<IApplicationRepository, ApplicationRepository>();
             service.AddScoped<IApplicationKeywordRepository, ApplicationKeywordRepository>();

@@ -1,5 +1,4 @@
 ﻿using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.Customer
@@ -11,9 +10,9 @@ namespace CXManagement.Application.UseCases.Customer
 
     public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand, bool>
     {
-        private readonly IRepository<CX_Customer> _repository;
+        private readonly ICustomerRepository _repository;
 
-        public DeleteCustomerCommandHandler(IRepository<CX_Customer> repository)
+        public DeleteCustomerCommandHandler(ICustomerRepository repository)
         {
             _repository = repository;
         }

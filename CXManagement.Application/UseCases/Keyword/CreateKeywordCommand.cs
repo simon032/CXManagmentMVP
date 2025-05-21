@@ -12,9 +12,9 @@ namespace CXManagement.Application.UseCases.Keyword
 
     public class CreateKeywordCommandHandler : IRequestHandler<CreateKeywordCommand, int>
     {
-        private readonly IRepository<CX_Keyword> _repository;
+        private readonly IKeywordRepository _repository;
 
-        public CreateKeywordCommandHandler(IRepository<CX_Keyword> repository)
+        public CreateKeywordCommandHandler(IKeywordRepository repository)
         {
             _repository = repository;
         }

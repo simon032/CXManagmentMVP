@@ -1,6 +1,5 @@
 ﻿using CXManagement.Application.DTOs.CX_Customer;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.Customer
@@ -12,9 +11,9 @@ namespace CXManagement.Application.UseCases.Customer
 
     public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, bool>
     {
-        private readonly IRepository<CX_Customer> _repository;
+        private readonly ICustomerRepository _repository;
 
-        public UpdateCustomerCommandHandler(IRepository<CX_Customer> repository)
+        public UpdateCustomerCommandHandler(ICustomerRepository repository)
         {
             _repository = repository;
         }

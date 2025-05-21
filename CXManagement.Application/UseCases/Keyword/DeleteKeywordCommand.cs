@@ -1,5 +1,4 @@
 ﻿using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.Keyword
@@ -11,9 +10,9 @@ namespace CXManagement.Application.UseCases.Keyword
 
     public class DeleteKeywordCommandHandler : IRequestHandler<DeleteKeywordCommand, bool>
     {
-        private readonly IRepository<CX_Keyword> _repository;
+        private readonly IKeywordRepository _repository;
 
-        public DeleteKeywordCommandHandler(IRepository<CX_Keyword> repository)
+        public DeleteKeywordCommandHandler(IKeywordRepository repository)
         {
             _repository = repository;
         }

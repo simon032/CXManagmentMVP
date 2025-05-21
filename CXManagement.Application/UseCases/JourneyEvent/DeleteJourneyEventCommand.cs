@@ -1,5 +1,4 @@
 ﻿using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using MediatR;
 
 namespace CXManagement.Application.UseCases.JourneyEvent
@@ -11,9 +10,9 @@ namespace CXManagement.Application.UseCases.JourneyEvent
 
     public class DeleteJourneyEventCommandHandler : IRequestHandler<DeleteJourneyEventCommand, bool>
     {
-        private readonly IRepository<CX_JourneyEvent> _repository;
+        private readonly IJourneyEventRepository _repository;
 
-        public DeleteJourneyEventCommandHandler(IRepository<CX_JourneyEvent> repository)
+        public DeleteJourneyEventCommandHandler(IJourneyEventRepository repository)
         {
             _repository = repository;
         }

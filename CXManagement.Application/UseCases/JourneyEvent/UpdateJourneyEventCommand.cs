@@ -1,6 +1,5 @@
 ﻿using CXManagement.Application.DTOs.CX_JourneyEvent;
 using CXManagement.Application.Interfaces;
-using CXManagmentMVP.Domain.Entities;
 using CXManagmentMVP.Domain.Enums;
 using MediatR;
 
@@ -13,9 +12,9 @@ namespace CXManagement.Application.UseCases.JourneyEvent
 
     public class UpdateJourneyEventCommandHandler : IRequestHandler<UpdateJourneyEventCommand, bool>
     {
-        private readonly IRepository<CX_JourneyEvent> _repository;
+        private readonly IJourneyEventRepository _repository;
 
-        public UpdateJourneyEventCommandHandler(IRepository<CX_JourneyEvent> repository)
+        public UpdateJourneyEventCommandHandler(IJourneyEventRepository repository)
         {
             _repository = repository;
         }

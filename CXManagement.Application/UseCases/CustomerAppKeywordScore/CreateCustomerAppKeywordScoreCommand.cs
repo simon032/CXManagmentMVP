@@ -12,9 +12,9 @@ namespace CXManagement.Application.UseCases.CustomerAppKeywordScore
 
     public class CreateCustomerAppKeywordScoreCommandHandler : IRequestHandler<CreateCustomerAppKeywordScoreCommand, int>
     {
-        private readonly IRepository<CX_Customer_AppKeyword_Score> _repository;
+        private readonly ICustomerAppKeywordScoreRepository _repository;
 
-        public CreateCustomerAppKeywordScoreCommandHandler(IRepository<CX_Customer_AppKeyword_Score> repository)
+        public CreateCustomerAppKeywordScoreCommandHandler(ICustomerAppKeywordScoreRepository repository)
         {
             _repository = repository;
         }
